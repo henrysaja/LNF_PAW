@@ -8,10 +8,13 @@ return new class extends Migration
 {
     public function up(): void
     {
-        // 1. Penyesuaian tabel users bawaan Laravel untuk mendukung kontak
+        // 1. Penyesuaian tabel users bawaan Laravel untuk mendukung NPM dan kontak
         Schema::table('users', function (Blueprint $table) {
+            if (!Schema::hasColumn('users', 'npm')) {
+                $table->string('npm', 15)->unique()->after('email');
+            }
             if (!Schema::hasColumn('users', 'no_whatsapp')) {
-                $table->string('no_whatsapp', 15)->nullable()->after('email');
+                $table->string('no_whatsapp', 15)->nullable()->after('npm');
             }
         });
 
@@ -39,10 +42,13 @@ return new class extends Migration
 
     public function down(): void
     {
+        // Urutan drop harus dibalik dari proses pembuatan untuk menghindari error foreign key
         Schema::dropIfExists('claims');
         Schema::dropIfExists('items');
+
+        // Hapus kolom tambahan di tabel users
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('no_whatsapp');
+            $table->dropColumn(['npm', 'no_whatsapp']);
         });
     }
 };

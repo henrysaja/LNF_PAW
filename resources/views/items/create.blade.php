@@ -12,16 +12,6 @@
                     @csrf
 
                     <div class="mb-3">
-                        <label class="form-label fw-bold">Pelapor (Simulasi Mahasiswa)</label>
-                        <select class="form-select" required>
-                            <option value="">-- Pilih Mahasiswa Pelapor --</option>
-                            @foreach($users as $user)
-                                <option value="{{ $user->id }}">{{ $user->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="mb-3">
                         <label class="form-label fw-bold">Kategori Laporan (Status)</label>
                         <select name="status" class="form-select" required>
                             <option value="hilang">Saya Kehilangan Barang</option>

@@ -17,7 +17,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
+            'npm' => ['required', 'string'],
             'password' => ['required'],
         ]);
 
@@ -26,7 +26,7 @@ class AuthController extends Controller
             return redirect()->intended('items')->with('success', 'Selamat datang kembali!');
         }
 
-        return back()->withErrors(['email' => 'Email atau password salah.'])->onlyInput('email');
+        return back()->withErrors(['npm' => 'NPM atau password salah.'])->onlyInput('npm');
     }
 
     public function showRegister()
@@ -39,6 +39,7 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'npm' => 'required|string|max:15|unique:users',
             'no_whatsapp' => 'required|string|max:15',
             'password' => 'required|string|min:8|confirmed',
         ]);
@@ -46,6 +47,7 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'npm' => $request->npm,
             'no_whatsapp' => $request->no_whatsapp,
             'password' => Hash::make($request->password),
         ]);

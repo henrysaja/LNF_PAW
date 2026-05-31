@@ -41,16 +41,6 @@
                 <form action="{{ route('claims.store', $item->id) }}" method="POST">
                     @csrf
                     <div class="mb-3">
-                        <label class="form-label">Simulasi Pengklaim:</label>
-                        <select class="form-select" required>
-                            <option value="">-- Pilih Mahasiswa --</option>
-                            @foreach($users as $user)
-                                @if($user->id !== $item->user_id) <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                @endif
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="mb-3">
                         <label class="form-label">Bukti Kepemilikan (Ciri khusus):</label>
                         <textarea name="bukti_klaim" class="form-control" rows="3" required></textarea>
                     </div>
