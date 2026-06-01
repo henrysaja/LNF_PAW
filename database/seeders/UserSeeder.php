@@ -10,26 +10,24 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        // Menambahkan data NPM ke dalam array dummy mahasiswa
         $mahasiswa = [
             [
                 'name' => 'Henry Glenn Iksan',
                 'email' => 'henry@mhs.mdp.ac.id',
                 'npm' => '2428240002',
-                'no_whatsapp' => '081100001111'
+                'no_whatsapp' => '081100001111',
+                'is_admin' => true,
+                'password' => Hash::make('admin123')
             ],
-            [
-                'name' => 'Severiano Firmansya',
-                'email' => 'severiano@mhs.mdp.ac.id',
-                'npm' => '2428240003',
-                'no_whatsapp' => '081100002222'
+              [
+                'name' => 'Henry 2',
+                'email' => 'henry2@mhs.mdp.ac.id',
+                'npm' => '2428240001',
+                'no_whatsapp' => '081100001111',
+                'is_admin' => false,
+                'password' => Hash::make('admin123')
             ],
-            [
-                'name' => 'Margareth Beautrice Laurentia',
-                'email' => 'margareth@mhs.mdp.ac.id',
-                'npm' => '2428240004',
-                'no_whatsapp' => '081100003333'
-            ]
+
         ];
 
         foreach ($mahasiswa as $mhs) {
@@ -37,8 +35,9 @@ class UserSeeder extends Seeder
                 'name' => $mhs['name'],
                 'email' => $mhs['email'],
                 'npm' => $mhs['npm'],
-                'password' => Hash::make('rahasia123'), // Password default untuk semua: rahasia123
-                'no_whatsapp' => $mhs['no_whatsapp']
+                'password' => $mhs['password'],
+                'no_whatsapp' => $mhs['no_whatsapp'],
+                'is_admin' => $mhs['is_admin'] ?? false
             ]);
         }
     }

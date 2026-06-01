@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lost & Found MDP</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body class="bg-light">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
@@ -28,14 +30,29 @@
                             <a class="nav-link" href="{{ route('login') }}">Masuk</a>
                         </li>
                         <li class="nav-item">
-                            <a class="btn btn-light btn-sm ms-2 fw-bold text-primary" href="{{ route('register') }}">Daftar Akun</a>
+                            <a class="btn btn-light btn-sm ms-2 fw-bold text-primary" href="{{ route('register') }}">Daftar
+                                Akun</a>
                         </li>
                     @endguest
 
                     @auth
-                        <li class="nav-item me-3 text-white-50">
-                            Halo, <strong>{{ Auth::user()->name }}</strong>
+                        <li class="nav-item me-3">
+                            <a class="nav-link text-white-50" href="{{ route('dashboard') }}">Aktivitas Saya</a>
                         </li>
+
+                        @if (Auth::user()->is_admin)
+                            <li class="nav-item me-4">
+                                <a class="nav-link fw-bold text-warning" href="{{ route('admin.dashboard') }}">🛡️ Panel
+                                    Admin</a>
+                            </li>
+                        @endif
+
+                        <li class="nav-item me-3">
+                            <a class="nav-link text-white-50" href="{{ route('profile.edit') }}">
+                                Halo, <strong class="text-white">{{ Auth::user()->name }}</strong> ⚙️
+                            </a>
+                        </li>
+
                         <li class="nav-item">
                             <form action="{{ route('logout') }}" method="POST" class="d-inline">
                                 @csrf
@@ -43,6 +60,7 @@
                             </form>
                         </li>
                     @endauth
+
                 </ul>
             </div>
         </div>
@@ -54,4 +72,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

@@ -10,7 +10,7 @@ class Item extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'nama_barang', 'deskripsi', 'lokasi_ditemukan_atau_hilang', 'status'];
+    protected $fillable = ['user_id', 'nama_barang', 'deskripsi', 'lokasi_ditemukan_atau_hilang', 'status', 'foto_barang'];
 
     // Relasi ke User (Siapa yang melapor)
     public function user()

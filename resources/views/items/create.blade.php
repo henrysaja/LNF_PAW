@@ -8,9 +8,8 @@
                 Buat Laporan Barang
             </div>
             <div class="card-body p-4">
-                <form action="{{ route('items.store') }}" method="POST">
-                    @csrf
-
+<form action="{{ route('items.store') }}" method="POST" enctype="multipart/form-data">
+    @csrf
                     <div class="mb-3">
                         <label class="form-label fw-bold">Kategori Laporan (Status)</label>
                         <select name="status" class="form-select" required>
@@ -32,6 +31,11 @@
                     <div class="mb-3">
                         <label class="form-label fw-bold">Deskripsi Tambahan</label>
                         <textarea name="deskripsi" class="form-control" rows="4" placeholder="Jelaskan ciri-ciri barang secara detail..." required></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Foto Barang</label>
+                        <input type="file" name="foto_barang" class="form-control" accept="image/*">
                     </div>
 
                     <div class="d-flex justify-content-between">
