@@ -23,7 +23,13 @@
                     <p class="text-muted mb-1">Dilaporkan oleh: <strong>{{ $item->user->name }}</strong></p>
                     <p class="text-muted">Status:
                         <span
-                            class="badge bg-{{ $item->status == 'hilang' ? 'danger' : ($item->status == 'ditemukan' ? 'success' : 'secondary') }}">
+                            class="badge bg-{{ $item->status == 'hilang'
+                                ? 'danger'
+                                : ($item->status == 'ditemukan'
+                                    ? 'success'
+                                    : ($item->status == 'dibatalkan'
+                                        ? 'secondary'
+                                        : 'warning')) }}">
                             {{ strtoupper($item->status) }}
                         </span>
                     </p>
@@ -41,9 +47,13 @@
                                     🎉 Saya Sudah Menemukan Barang Ini!
                                 </button>
                             </form>
-                            <div class="form-text text-muted text-center mt-1">
-                                <small>Klik tombol ini jika Anda sudah menemukan kembali barang Anda secara mandiri.</small>
-                            </div>
+                            <form action="{{ route('items.cancel', $item->id) }}" method="POST"
+                                onsubmit="return confirm('Apakah Anda yakin ingin membatalkan laporan ini?');">
+                                @csrf @method('PATCH')
+                                <button type="submit" class="btn btn-outline-danger w-100 fw-bold">
+                                    ❌ Batalkan Laporan
+                                </button>
+                            </form>
                         </div>
                     @endif
                 </div>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User; // Memastikan Model User di-import dengan benar
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -30,7 +30,7 @@ class ProfileController extends Controller
         // Validasi input dari form
         $request->validate([
             'no_whatsapp' => 'required|string|max:15',
-            'password' => 'nullable|string|min:8|confirmed', // Boleh kosong jika tidak ingin ganti password
+            'password' => 'nullable|string|min:8|confirmed', 
         ]);
 
         // Memperbarui nomor WhatsApp

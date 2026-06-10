@@ -20,13 +20,16 @@
                     <p class="card-text">{{ \Illuminate\Support\Str::limit($item->deskripsi, 80) }}</p>
 
                     <div class="mb-3">
-                        @if ($item->status === 'hilang')
-                            <span class="badge bg-danger px-3 py-2">Hilang</span>
-                        @elseif($item->status === 'ditemukan')
-                            <span class="badge bg-success px-3 py-2">Ditemukan</span>
-                        @elseif($item->status === 'dikembalikan')
-                            <span class="badge bg-secondary px-3 py-2">Dikembalikan</span>
-                        @endif
+                        <span
+                            class="badge bg-{{ $item->status == 'hilang'
+                                ? 'danger'
+                                : ($item->status == 'ditemukan'
+                                    ? 'success'
+                                    : ($item->status == 'dibatalkan'
+                                        ? 'secondary'
+                                        : 'warning')) }}">
+                            {{ strtoupper($item->status) }}
+                        </span>
                     </div>
                 </div>
 

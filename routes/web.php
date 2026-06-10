@@ -34,6 +34,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/item/create', [ItemController::class, 'create'])->name('items.create');
     Route::post('/items', [ItemController::class, 'store'])->name('items.store');
 
+    Route::patch('/items/{id}/cancel', [ItemController::class, 'cancel'])->name('items.cancel');
+
     // Route untuk mengajukan klaim pada barang tertentu
     Route::post('/items/{item}/claims', [ClaimController::class, 'store'])->name('claims.store');
     Route::patch('/claims/{claim}/status', [ClaimController::class, 'updateStatus'])->name('claims.updateStatus');

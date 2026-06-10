@@ -49,7 +49,7 @@
         const resultsContainer = document.getElementById('item-results-container');
 
         let typingTimer;
-        const typingInterval = 300; // Jeda 0.3 detik agar database tidak jebol saat mengetik cepat
+        const typingInterval = 300;
 
         function fetchResults() {
             const keyword = searchInput.value;
